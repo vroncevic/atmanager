@@ -27,7 +27,7 @@ TOOL_LOG=$TOOL_HOME/log
 
 declare -A ATMANAGER_USAGE=(
 	[TOOL_NAME]="__$TOOL_NAME"
-	[ARG1]="[OPTION] start | stop | restart | start-security | version"
+	[ARG1]="[OPERATION] start | stop | restart | start-security | version"
 	[EX-PRE]="# Restart Apache Tomcat Server"
 	[EX]="__$TOOL_NAME restart"	
 )
@@ -51,13 +51,13 @@ TOMCAT_OP_LIST=( start stop restart start-security version )
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
-# __atmanager $OPERATION
+# OPERATION="start"
+# __atmanager "$OPERATION"
 #
 function __atmanager() {
 	OPERATION=$1
 	if [ "$TOOL_DEBUG" == "true" ]; then
-		printf "%s\n" "Apache Tomcat Server Manager"
-		printf "%s" "Check Apache Tomcat "
+		printf "%s" "Checking Apache Tomcat Server "
 	fi
 	__checktool "$TOMCAT_HOME/bin/catalina.sh"
 	STATUS=$?
@@ -69,63 +69,71 @@ function __atmanager() {
 			__checkop "$OPERATION" "${TOMCAT_OP_LIST[*]}"
 			STATUS=$?
 			if [ "$STATUS" -eq "$SUCCESS" ]; then
-				if [ ! -e "$TOMCAT_HOME/bin/catalina.sh" ]; then
-					printf "%s\n\n" "[Error] Check file [$TOMCAT_HOME/bin/catalina.sh]"
-					exit 130
-				fi
 				case "$OPERATION" in
-					"start") 			eval "$TOMCAT_HOME/bin/./catalina.sh start"
-										LOG[MSG]="Started Apache Tomcat Server"
-										if [ "$TOOL_DEBUG" == "true" ]; then
-											printf "%s\n" "[Info] ${LOG[MSG]}"
-										fi
-										__logging $LOG
-										;;
-					"stop")	    		eval "$TOMCAT_HOME/bin/./catalina.sh stop"
-										LOG[MSG]="Stoped Apache Tomcat Server"
-										if [ "$TOOL_DEBUG" == "true" ]; then
-											printf "%s\n" "[Info] ${LOG[MSG]}"
-										fi
-										__logging $TOOL_LOG
-										;;
-					"restart")			eval "$TOMCAT_HOME/bin/./catalina.sh stop"
-										sleep 2
-										eval "$TOMCAT_HOME/bin/./catalina.sh start"
-										LOG[LOG_MSG]="Restarted Apache Tomcat Server"
-										if [ "$TOOL_DEBUG" == "true" ]; then
-											printf "%s\n" "[Info] ${LOG[MSG]}"
-										fi
-										__logging $LOG
-										;;
-					"start-security")	eval "$TOMCAT_HOME/bin/./catalina.sh start-security"
-										LOG[MSG]="Start security Apache Tomcat Server"
-										if [ "$TOOL_DEBUG" == "true" ]; then
-											printf "%s\n" "[Info] ${LOG[MSG]}"
-										fi
-										__logging $TOOL_LOG
-										;;
-					"version")		  	eval "$TOMCAT_HOME/bin/./catalina.sh version"
-										;;
+					"start") 			
+						eval "$TOMCAT_HOME/bin/./catalina.sh start"
+						LOG[MSG]="Started Apache Tomcat Server"
+						if [ "$TOOL_DEBUG" == "true" ]; then
+							printf "%s\n" "[Info] ${LOG[MSG]}"
+						fi
+						;;
+					"stop")	    		
+						eval "$TOMCAT_HOME/bin/./catalina.sh stop"
+						LOG[MSG]="Stopped Apache Tomcat Server"
+						if [ "$TOOL_DEBUG" == "true" ]; then
+							printf "%s\n" "[Info] ${LOG[MSG]}"
+						fi
+						;;
+					"restart")			
+						eval "$TOMCAT_HOME/bin/./catalina.sh stop"
+						sleep 2
+						eval "$TOMCAT_HOME/bin/./catalina.sh start"
+						LOG[MSG]="Restarted Apache Tomcat Server"
+						if [ "$TOOL_DEBUG" == "true" ]; then
+							printf "%s\n" "[Info] ${LOG[MSG]}"
+						fi
+						;;
+					"start-security")	
+						eval "$TOMCAT_HOME/bin/./catalina.sh start-security"
+						LOG[MSG]="Start security Apache Tomcat Server"
+						if [ "$TOOL_DEBUG" == "true" ]; then
+							printf "%s\n" "[Info] ${LOG[MSG]}"
+						fi
+						;;
+					"version")
+						LOG[MSG]="Get version of Apache Tomcat Server"
+						eval "$TOMCAT_HOME/bin/./catalina.sh version"
+						;;
 				esac
 				if [ "$TOOL_DEBUG" == "true" ]; then
 					printf "%s\n\n" "[Done]"
 				fi
+				__logging $LOG
 				exit 0
 			fi
 			__usage $ATMANAGER_USAGE
-			exit 129
+			exit 130
 		fi 
 		__usage $ATMANAGER_USAGE
-		exit 128
+		exit 129
 	fi
 	printf "%s\n" "[not ok]"
-	printf "%s\n\n" "[Error] Check Apache Tomcat structure [$TOMCAT_HOME/]"
-	exit 127
+	LOG[FLAG]="error"
+	LOG[MSG]="Check file [$TOMCAT_HOME/bin/catalina.sh]"
+	printf "%s\n\n" "[Error] ${LOG[MSG]}"
+	__logging $LOG
+	exit 128
 }
 
 #
-# @brief Main entry point
-# @param required value operation to be done
+# @brief   Main entry point
+# @param   required value operation to be done
+# @exitval Script tool atmanger exit with integer value
+#			0   - success operation 
+# 			127 - run as root user
+#			128 - missing catalina script file
+#			129 - missing argument
+#			130 - wrong argument (operation)
 #
 printf "\n%s\n%s\n\n" "$TOOL_NAME $TOOL_VERSION" "`date`"
 __checkroot
@@ -134,5 +142,5 @@ if [ "$STATUS" -eq "$SUCCESS" ]; then
 	__atmanager "$1"
 fi
 
-exit 0
+exit 127
 
