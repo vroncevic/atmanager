@@ -11,8 +11,11 @@ INSTALLATION
 To install this tool type the following:
 
    cp -R ~/atmanager/bin/   /root/scripts/atmanager/var.1.0/
+
    cp -R ~/atmanager/conf/  /root/scripts/atmanager/var.1.0/
+
    cp -R ~/atmanager/log/   /root/scripts/atmanager/var.1.0/
+
 
 DEPENDENCIES
 
