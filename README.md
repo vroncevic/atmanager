@@ -1,10 +1,10 @@
 Apache Tomcat Manager (Bash script) version 1.0
 ================================================================================
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
+The README is used to introduce the tool and provide instructions on
+how to install the tool, any machine dependencies it may have (for
 example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+that should be provided before the tool is installed.
 
 INSTALLATION
 
@@ -19,7 +19,7 @@ To install this tool type the following:
 
 DEPENDENCIES
 
-This module requires these other modules and libraries:
+This tool requires these other modules and libraries:
 
   	sh-util
 
