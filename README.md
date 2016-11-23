@@ -1,4 +1,4 @@
-Apache Tomcat Manager (Bash scripts) version 1.0
+Apache Tomcat Manager (Bash scripts)
 ================================================================================
 
 The README is used to introduce the tool and provide instructions on
