@@ -14,6 +14,7 @@ UTIL_LOG=$UTIL/log
 . $UTIL/bin/checkroot.sh
 . $UTIL/bin/checktool.sh
 . $UTIL/bin/loadconf.sh
+. $UTIL/bin/loadutilconf.sh
 . $UTIL/bin/sendmail.sh
 . $UTIL/bin/checkop.sh
 . $UTIL/bin/logging.sh
@@ -46,10 +47,10 @@ TOOL_DBG="false"
 # @brief   Main function 
 # @param   Value required operation to be done
 # @exitval function __atmanger exit with integer value
-#			0   - success operation 
-#			128 - failed to load config file
-#			129 - missing catalina script file
-#			130 - missing argument
+#			0   - tool finished with success operation 
+#			128 - failed to load tool script configuration from file 
+#			129 - failed to load tool script utilities configuration from file
+#			130 - missing external tool tomcat
 #			131 - wrong argument (operation)
 #
 # @usage
@@ -60,104 +61,116 @@ TOOL_DBG="false"
 #
 function __atmanager() {
 	local OPERATION=$1
-	local TOMCAT_HOME="/usr/share/tomcat"
 	local TOMCAT_OP_LIST=( start stop restart start-security version )
 	local FUNC=${FUNCNAME[0]}
 	local MSG=""
 	declare -A atmanagercfg=()
 	__loadconf $ATMANAGER_CFG atmanagercfg
 	local STATUS=$?
-	if [ "$STATUS" -eq "$SUCCESS" ]; then
-		__checktool "$TOMCAT_HOME/bin/catalina.sh"
-		STATUS=$?
-		if [ "$STATUS" -eq "$SUCCESS" ]; then
-			if [ -n "$OPERATION" ] && [ -z "$OPERATION" ]; then
-				__checkop "$OPERATION" "${TOMCAT_OP_LIST[*]}"
-				STATUS=$?
-				if [ "$STATUS" -eq "$SUCCESS" ]; then
-					case "$OPERATION" in
-						"start")
-							eval "$TOMCAT_HOME/bin/./catalina.sh start"
-							LOG[MSG]="Started Apache Tomcat Server"
-							if [ "$TOOL_DBG" == "true" ]; then
-								MSG="${LOG[MSG]}"
-								printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-							fi
-							;;
-						"stop")
-							eval "$TOMCAT_HOME/bin/./catalina.sh stop"
-							LOG[MSG]="Stopped Apache Tomcat Server"
-							if [ "$TOOL_DBG" == "true" ]; then
-								MSG="${LOG[MSG]}"
-								printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-							fi
-							;;
-						"restart")
-							eval "$TOMCAT_HOME/bin/./catalina.sh stop"
-							sleep 2
-							eval "$TOMCAT_HOME/bin/./catalina.sh start"
-							LOG[MSG]="Restarted Apache Tomcat Server"
-							if [ "$TOOL_DBG" == "true" ]; then
-								MSG="${LOG[MSG]}"
-								printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-							fi
-							;;
-						"start-security")
-							eval "$TOMCAT_HOME/bin/./catalina.sh start-security"
-							LOG[MSG]="Start security Apache Tomcat Server"
-							if [ "$TOOL_DBG" == "true" ]; then
-								MSG="${LOG[MSG]}"
-								printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-							fi
-							;;
-						"version")
-							LOG[MSG]="Get version of Apache Tomcat Server"
-							eval "$TOMCAT_HOME/bin/./catalina.sh version"
-							;;
-					esac
-					if [ "$TOOL_DBG" == "true" ]; then
-						printf "$DEND" "$ATMANAGER_TOOL" "$FUNC" "Done"
-					fi
-					if [ "${atmanagercfg[LOGGING]}" == "true" ]; then
-						__logging $LOG
-					fi
-					exit 0
-				fi
-				__usage $ATMANAGER_USAGE
-				exit 131
-			fi 
-			__usage $ATMANAGER_USAGE
-			exit 130
+	if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
+		MSG="Failed to load tool script configuration"
+		if [ "$TOOL_DBG" == "true" ]; then
+			printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
+		else
+			printf "$SEND" "[$ATMANAGER_TOOL]" "$MSG"
 		fi
-		LOG[FLAG]="error"
-		LOG[MSG]="Check file [$TOMCAT_HOME/bin/catalina.sh]"
-		if [ "${atmanagercfg[LOGGING]}" == "true" ]; then
-			__logging $LOG
-		fi
-		MSG="${LOG[MSG]}"
-		printf "$SEND" "$ATMANAGER_TOOL" "$MSG"
-		__sendmail "${LOG[MSG]}" "${atmanagercfg[ADMIN_EMAIL]}"
-		STATUS=$?
-		if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
-			MSG="Check configuration of sendmail"
-			printf "$SEND" "$ATMANAGER_TOOL" "$MSG"
+		exit 128
+	fi
+	declare -A atmanagerutilcfg=()
+	__loadconf $ATMANAGER_CFG atmanagerutilcfg
+	STATUS=$?
+	if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
+		MSG="Failed to load tool script utilities configuration"
+		if [ "$TOOL_DBG" == "true" ]; then
+			printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
+		else
+			printf "$SEND" "[$ATMANAGER_TOOL]" "$MSG"
 		fi
 		exit 129
 	fi
-	MSG="Check config file [$ATMANAGER_CFG]"
-	printf "$SEND" "$ATMANAGER_TOOL" "$MSG"
-	exit 128
+	local TOM_HOME="$atmanagerutilcfg[TOMCAT_HOME]"
+	local TOM_CAT="$atmanagerutilcfg[TOMCAT_CATALINA]"
+	local TOMCAT_SCRIPT="$TOM_HOME/$TOM_CAT"
+	__checktool $TOMCAT_SCRIPT
+	STATUS=$?
+	if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
+		MSG="Missing external tool $TOMCAT_SCRIPT"
+		if [ "${atmanagercfg[LOGGING]}" == "true" ]; then
+			LOG[MSG]=$MSG
+			LOG[FLAG]="error"
+			__logging $LOG
+		fi
+		if [ "${atmanagercfg[EMAILING]}" == "true" ]; then
+			__sendmail "$MSG" "${atmanagercfg[ADMIN_EMAIL]}"
+		fi
+		exit 130
+	fi
+	if [ -n "$OPERATION" ] && [ -z "$OPERATION" ]; then
+		__checkop "$OPERATION" "${TOMCAT_OP_LIST[*]}"
+		STATUS=$?
+		if [ "$STATUS" -eq "$SUCCESS" ]; then
+			case "$OPERATION" in
+				"start")
+					eval "$TOM_HOME/bin/$atmanagerutilcfg[RUN_CATALINA] start"
+					LOG[MSG]="Started Apache Tomcat Server"
+					if [ "$TOOL_DBG" == "true" ]; then
+						MSG="${LOG[MSG]}"
+						printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
+					fi
+					;;
+				"stop")
+					eval "$TOM_HOME/bin/$atmanagerutilcfg[RUN_CATALINA] stop"
+					LOG[MSG]="Stopped Apache Tomcat Server"
+					if [ "$TOOL_DBG" == "true" ]; then
+						MSG="${LOG[MSG]}"
+						printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
+					fi
+					;;
+				"restart")
+					eval "$TOM_HOME/bin/$atmanagerutilcfg[RUN_CATALINA] stop"
+					sleep 2
+					eval "$TOM_HOME/bin/$atmanagerutilcfg[RUN_CATALINA] start"
+					LOG[MSG]="Restarted Apache Tomcat Server"
+					if [ "$TOOL_DBG" == "true" ]; then
+						MSG="${LOG[MSG]}"
+						printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
+					fi
+					;;
+				"start-security")
+					eval "$TOM_HOME/bin/$atmanagerutilcfg[RUN_CATALINA] start-security"
+					LOG[MSG]="Start security Apache Tomcat Server"
+					if [ "$TOOL_DBG" == "true" ]; then
+						MSG="${LOG[MSG]}"
+						printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
+					fi
+					;;
+				"version")
+					LOG[MSG]="Get version of Apache Tomcat Server"
+					eval "$TOM_HOME/bin/$atmanagerutilcfg[RUN_CATALINA] version"
+					;;
+			esac
+			if [ "$TOOL_DBG" == "true" ]; then
+				printf "$DEND" "$ATMANAGER_TOOL" "$FUNC" "Done"
+			fi
+			if [ "${atmanagercfg[LOGGING]}" == "true" ]; then
+				__logging $LOG
+			fi
+			exit 0
+		fi
+	fi		
+	__usage $ATMANAGER_USAGE
+	exit 131
 }
 
 #
 # @brief   Main entry point
 # @param   required value operation to be done
 # @exitval Script tool atmanger exit with integer value
-#			0   - success operation 
-# 			127 - run as root user
-#			128 - failed to load config file
-#			129 - missing catalina script file
-#			130 - missing argument
+#			0   - tool finished with success operation 
+# 			127 - run tool script as root user from cli
+#			128 - failed to load tool script configuration from file 
+#			129 - failed to load tool script utilities configuration from file
+#			130 - missing external tool tomcat
 #			131 - wrong argument (operation)
 #
 printf "\n%s\n%s\n\n" "$ATMANAGER_TOOL $ATMANAGER_VERSION" "`date`"
@@ -170,3 +183,4 @@ if [ "$STATUS" -eq "$SUCCESS" ]; then
 fi
 
 exit 127
+
