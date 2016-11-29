@@ -20,6 +20,7 @@ UTIL_LOG=$UTIL/log
 . $UTIL/bin/sendmail.sh
 . $UTIL/bin/loadconf.sh
 . $UTIL/bin/loadutilconf.sh
+. $UTIL/bin/progressbar.sh
 
 ATMANAGER_TOOL=atmanager
 ATMANAGER_VERSION=ver.1.0
