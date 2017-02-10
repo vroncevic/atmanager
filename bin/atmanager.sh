@@ -8,189 +8,146 @@
 #  
 UTIL_ROOT=/root/scripts
 UTIL_VERSION=ver.1.0
-UTIL=$UTIL_ROOT/sh-util-srv/$UTIL_VERSION
-UTIL_LOG=$UTIL/log
+UTIL=${UTIL_ROOT}/sh_util/${UTIL_VERSION}
+UTIL_LOG=${UTIL}/log
 
-. $UTIL/bin/devel.sh
-. $UTIL/bin/usage.sh
-. $UTIL/bin/checkroot.sh
-. $UTIL/bin/checktool.sh
-. $UTIL/bin/logging.sh
-. $UTIL/bin/checkop.sh
-. $UTIL/bin/sendmail.sh
-. $UTIL/bin/loadconf.sh
-. $UTIL/bin/loadutilconf.sh
-. $UTIL/bin/progressbar.sh
+.	${UTIL}/bin/devel.sh
+.	${UTIL}/bin/usage.sh
+.	${UTIL}/bin/check_root.sh
+.	${UTIL}/bin/check_tool.sh
+.	${UTIL}/bin/check_op.sh
+.	${UTIL}/bin/logging.sh
+.	${UTIL}/bin/load_conf.sh
+.	${UTIL}/bin/load_util_conf.sh
+.	${UTIL}/bin/progress_bar.sh
 
 ATMANAGER_TOOL=atmanager
 ATMANAGER_VERSION=ver.1.0
-ATMANAGER_HOME=$UTIL_ROOT/$ATMANAGER_TOOL/$ATMANAGER_VERSION
-ATMANAGER_CFG=$ATMANAGER_HOME/conf/$ATMANAGER_TOOL.cfg
-ATMANAGER_UTIL_CFG=$ATMANAGER_HOME/conf/${ATMANAGER_TOOL}_util.cfg
-ATMANAGER_LOG=$ATMANAGER_HOME/log
+ATMANAGER_HOME=${UTIL_ROOT}/${ATMANAGER_TOOL}/${ATMANAGER_VERSION}
+ATMANAGER_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}.cfg
+ATMANAGER_UTIL_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}_util.cfg
+ATMANAGER_LOG=${ATMANAGER_HOME}/log
 
 declare -A ATMANAGER_USAGE=(
-	[USAGE_TOOL]="__$ATMANAGER_TOOL"
-	[USAGE_ARG1]="[OPERATION] start | stop | restart | start-security | version"
+	[USAGE_TOOL]="__${ATMANAGER_TOOL}"
+	[USAGE_ARG1]="[OP] start | stop | restart | start-security | version"
 	[USAGE_EX_PRE]="# Restart Apache Tomcat Server"
-	[USAGE_EX]="__$ATMANAGER_TOOL restart"
+	[USAGE_EX]="__${ATMANAGER_TOOL} restart"
 )
 
-declare -A ATMANAGER_LOG=(
-	[LOG_TOOL]="$ATMANAGER_TOOL"
+declare -A ATMANAGER_LOGGING=(
+	[LOG_TOOL]="${ATMANAGER_TOOL}"
 	[LOG_FLAG]="info"
-	[LOG_PATH]="$ATMANAGER_LOG"
+	[LOG_PATH]="${ATMANAGER_LOG}"
 	[LOG_MSGE]="None"
 )
 
 declare -A PB_STRUCTURE=(
-	[BAR_WIDTH]=50
-	[MAX_PERCENT]=100
+	[BW]=50
+	[MP]=100
 	[SLEEP]=0.01
 )
 
 TOOL_DBG="false"
+TOOL_LOG="false"
+TOOL_NOTIFY="false"
 
 #
-# @brief   Main function 
+# @brief   Main function
 # @param   Value required operation to be done
-# @exitval function __atmanger exit with integer value
-#			0   - tool finished with success operation 
-#			128 - failed to load tool script configuration from file 
-#			129 - failed to load tool script utilities configuration from file
+# @exitval Function __atmanger exit with integer value
+#			0   - tool finished with success operation
+#			128 - missing argument
+#			129 - failed to load tool script configuration from files
 #			130 - missing external tool tomcat
 #			131 - wrong argument (operation)
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
-# local OPERATION="start"
-# __atmanager "$OPERATION"
+# local OP="start"
+# __atmanager "$OP"
 #
 function __atmanager() {
-	local OPERATION=$1
-	local TOMCAT_OP_LIST=( start stop restart start-security version )
-	local FUNC=${FUNCNAME[0]}
-	local MSG="Loading basic and util configuration"
-	printf "$SEND" "$ATMANAGER_TOOL" "$MSG"
-	__progressbar PB_STRUCTURE
-	printf "%s\n\n" ""
-	declare -A configatmanager=()
-	__loadconf $ATMANAGER_CFG configatmanager
-	local STATUS=$?
-	if [ $STATUS -eq $NOT_SUCCESS ]; then
-		MSG="Failed to load tool script configuration"
-		if [ "$TOOL_DBG" == "true" ]; then
-			printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-		else
-			printf "$SEND" "$ATMANAGER_TOOL" "$MSG"
-		fi
-		exit 128
-	fi
-	declare -A configatmanagerutil=()
-	__loadutilconf $ATMANAGER_UTIL_CFG configatmanagerutil
-	STATUS=$?
-	if [ $STATUS -eq $NOT_SUCCESS ]; then
-		MSG="Failed to load tool script utilities configuration"
-		if [ "$TOOL_DBG" == "true" ]; then
-			printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-		else
-			printf "$SEND" "$ATMANAGER_TOOL" "$MSG"
-		fi
-		exit 129
-	fi
-	local TOM_HOME="$configatmanagerutil[TOMCAT_HOME]"
-	local TOM_CAT="$configatmanagerutil[TOMCAT_CATALINA]"
-	local TOMCAT_SCRIPT="$TOM_HOME/$TOM_CAT"
-	__checktool $TOMCAT_SCRIPT
-	STATUS=$?
-	if [ $STATUS -eq $NOT_SUCCESS ]; then
-		MSG="Missing external tool $TOMCAT_SCRIPT"
-		if [ "${configatmanager[LOGGING]}" == "true" ]; then
-			ATMANAGER_LOG[LOG_MSGE]=$MSG
-			ATMANAGER_LOG[LOG_FLAG]="error"
-			__logging ATMANAGER_LOG
-		fi
-		if [ "${configatmanager[EMAILING]}" == "true" ]; then
-			__sendmail "$MSG" "${configatmanager[ADMIN_EMAIL]}"
-		fi
-		exit 130
-	fi
-	if [ -n "$OPERATION" ] && [ -z "$OPERATION" ]; then
-		__checkop "$OPERATION" "${TOMCAT_OP_LIST[*]}"
+	local OP=$1
+	if [ -n "${OP}" ]; then
+		local FUNC=${FUNCNAME[0]} MSG="None" STATUS_CONF STATUS_CONF_UTIL STATUS
+		MSG="Loading basic and util configuration!"
+		__info_debug_message "$MSG" "$FUNC" "$ATMANAGER_TOOL"
+		__progress_bar PB_STRUCTURE
+		declare -A config_atmanager=()
+		__load_conf "$ATMANAGER_CFG" config_atmanager
+		STATUS_CONF=$?
+		declare -A config_atmanager_util=()
+		__load_util_conf "$ATMANAGER_UTIL_CFG" config_atmanager_util
+		STATUS_CONF_UTIL=$?
+		declare -A STATUS_STRUCTURE=(
+			[1]=$STATUS_CONF [2]=$STATUS_CONF_UTIL
+		)
+		__check_status STATUS_STRUCTURE
 		STATUS=$?
-		if [ $STATUS -eq $SUCCESS ]; then
-			case "$OPERATION" in
-				"start")
-					eval "$TOM_HOME/bin/$configatmanagerutil[RUN_CATALINA] start"
-					ATMANAGER_LOG[LOG_MSGE]="Started Apache Tomcat Server"
-					ATMANAGER_LOG[LOG_FLAG]="info"
-					if [ "$TOOL_DBG" == "true" ]; then
-						MSG="${LOG[MSG]}"
-						printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-					fi
-					;;
-				"stop")
-					eval "$TOM_HOME/bin/$configatmanagerutil[RUN_CATALINA] stop"
-					ATMANAGER_LOG[LOG_MSGE]="Stopped Apache Tomcat Server"
-					ATMANAGER_LOG[LOG_FLAG]="info"
-					if [ "$TOOL_DBG" == "true" ]; then
-						MSG="${LOG[MSG]}"
-						printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-					fi
-					;;
-				"restart")
-					eval "$TOM_HOME/bin/$configatmanagerutil[RUN_CATALINA] stop"
-					sleep 2
-					eval "$TOM_HOME/bin/$configatmanagerutil[RUN_CATALINA] start"
-					ATMANAGER_LOG[LOG_MSGE]="Restarted Apache Tomcat Server"
-					ATMANAGER_LOG[LOG_FLAG]="info"
-					if [ "$TOOL_DBG" == "true" ]; then
-						MSG="${LOG[MSG]}"
-						printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-					fi
-					;;
-				"start-security")
-					eval "$TOM_HOME/bin/$configatmanagerutil[RUN_CATALINA] start-security"
-					ATMANAGER_LOG[LOG_MSGE]="Start security Apache Tomcat Server"
-					ATMANAGER_LOG[LOG_FLAG]="info"
-					if [ "$TOOL_DBG" == "true" ]; then
-						MSG="${LOG[MSG]}"
-						printf "$DSTA" "$ATMANAGER_TOOL" "$FUNC" "$MSG"
-					fi
-					;;
-				"version")
-					ATMANAGER_LOG[LOG_MSGE]="Get version of Apache Tomcat Server"
-					ATMANAGER_LOG[LOG_FLAG]="info"
-					eval "$TOM_HOME/bin/$configatmanagerutil[RUN_CATALINA] version"
-					;;
-			esac
-			if [ "$TOOL_DBG" == "true" ]; then
-				printf "$DEND" "$ATMANAGER_TOOL" "$FUNC" "Done"
-			fi
-			if [ "${configatmanager[LOGGING]}" == "true" ]; then
-				__logging ATMANAGER_LOG
-			fi
-			exit 0
+		if [ $STATUS -eq $NOT_SUCCESS ]; then
+			MSG="Force exit!"
+			__info_debug_message_end "$MSG" "$FUNC" "$ATMANAGER_TOOL"
+			exit 129
 		fi
-	fi		
+		TOOL_DBG=${config_atmanager[DEBUGGING]}
+		TOOL_LOG=${config_atmanager[LOGGING]}
+		TOOL_NOTIFY=${config_atmanager[EMAILING]}
+		local THOME=${config_atmanager_util[TOMCAT_HOME]} EL
+		local CAT=${config_atmanager_util[TOMCAT_CATALINA]}
+		local OPERATIONS=${config_atmanager_util[TOMCAT_OPERATIONS]}
+		IFS=' ' read -ra OPS <<< "${OPERATIONS}"
+		__check_tool "${THOME}/bin/${CAT}"
+		STATUS=$?
+		if [ $STATUS -eq $NOT_SUCCESS ]; then
+			MSG="Missing tool ${THOME}/bin/${CAT}"
+			ATMANAGER_LOGGING[LOG_MSGE]=$MSG
+			ATMANAGER_LOGGING[LOG_FLAG]="error"
+			__logging ATMANAGER_LOGGING
+			MSG="Force exit!"
+			__info_debug_message_end "$MSG" "$FUNC" "$ATMANAGER_TOOL"
+			exit 130
+		fi
+		__check_op "${OP}" "${OPS[*]}"
+		STATUS=$?
+		if [ $STATUS -eq $NOT_SUCCESS ]; then
+			MSG="Force exit!"
+			__info_debug_message_end "$MSG" "$FUNC" "$ATMANAGER_TOOL"
+			exit 131
+		fi
+		for EL in "${!OPS[@]}"
+		do
+			if [[ "${OPS[$EL]}" == "${OP}" ]]; then
+				MSG="Operation: ${OP} Apache Tomcat Server"
+				__info_debug_message "$MSG" "$FUNC" "$ATMANAGER_TOOL"
+				eval "$THOME/bin/./${CAT} ${OP}"
+				ATMANAGER_LOGGING[LOG_MSGE]=$MSG
+				ATMANAGER_LOGGING[LOG_FLAG]="info"
+				__logging ATMANAGER_LOGGING
+			fi
+			continue
+		done
+		__info_debug_message "Done" "$FUNC" "$ATMANAGER_TOOL"
+		exit 0
+	fi
 	__usage ATMANAGER_USAGE
-	exit 131
+	exit 128
 }
 
 #
 # @brief   Main entry point
-# @param   required value operation to be done
+# @param   Value required operation to be done
 # @exitval Script tool atmanger exit with integer value
-#			0   - tool finished with success operation 
-# 			127 - run tool script as root user from cli
-#			128 - failed to load tool script configuration from file 
-#			129 - failed to load tool script utilities configuration from file
+#			0   - tool finished with success operation
+#			127 - run tool script as root user from cli
+#			128 - missing argument
+#			129 - failed to load tool script configuration from files
 #			130 - missing external tool tomcat
 #			131 - wrong argument (operation)
 #
-printf "\n%s\n%s\n\n" "$ATMANAGER_TOOL $ATMANAGER_VERSION" "`date`"
-__checkroot
+printf "\n%s\n%s\n\n" "${ATMANAGER_TOOL} ${ATMANAGER_VERSION}" "`date`"
+__check_root
 STATUS=$?
 if [ $STATUS -eq $SUCCESS ]; then
 	__atmanager $1
