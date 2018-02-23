@@ -68,7 +68,7 @@ TOOL_NOTIFY="false"
 # local OP="start"
 # __atmanager "$OP"
 #
-function __atmanager() {
+function __atmanager {
     local OP=$1
     if [ -n "${OP}" ]; then
         local FUNC=${FUNCNAME[0]} MSG="None"
