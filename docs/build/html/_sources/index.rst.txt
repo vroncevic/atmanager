@@ -6,10 +6,9 @@ ATMANAGER
 
  self
 
+**atmanager** is shell tool for controlling/operating Apache Tomcat Server.
 
-atmanager is shell tool for controlling/operating Apache Tomcat Server.
-
-Developed in bash code: 100%.
+Developed in `bash <https://en.wikipedia.org/wiki/Bash_(Unix_shell)>`_ code: **100%**.
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -28,11 +27,12 @@ other information that should be provided before the tool is installed.
 
 INSTALLATION
 -------------
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/atmanager/releases
 
-To install this set of modules type the following:
+To install **atmanager** type the following:
 
 .. code-block:: bash
 
@@ -44,17 +44,16 @@ To install this set of modules type the following:
 
 DEPENDENCIES
 -------------
-This tool requires these other modules and libraries:
 
-.. code-block:: bash
-
-   sh_util https://github.com/vroncevic/sh_util
+**atmanager** requires next modules and libraries:
+    sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
 
 SHELL TOOL STRUCTURE
 ---------------------
-atmanager is based on MOP.
 
-Shell tool structure:
+**atmanager** is based on MOP.
+
+Code structure:
 
 .. code-block:: bash
 
@@ -78,7 +77,7 @@ COPYRIGHT AND LICENCE
 .. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
 
-Copyright (C) 2018 by https://vroncevic.github.io/atmanager
+Copyright (C) 2017 by `vroncevic.github.io/atmanager <https://vroncevic.github.io/atmanager>`_
 
 This tool is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,
