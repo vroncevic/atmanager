@@ -1,8 +1,8 @@
 # Apache Tomcat Manager.
 
-***atmanager*** is shell tool for controlling/operating Apache Tomcat Server.
+**atmanager** is shell tool for controlling/operating Apache Tomcat Server.
 
-Developed in bash code: ***100%***.
+Developed in [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) code: **100%**.
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -14,12 +14,12 @@ other information that should be provided before the tool is installed.
 <!-- START doctoc -->
 **Table of Contents**
 
-- [Installation](https://github.com/vroncevic/atmanager#installation)
-- [Usage](https://github.com/vroncevic/atmanager#usage)
-- [Dependencies](https://github.com/vroncevic/atmanager#dependencies)
-- [Shell tool structure](https://github.com/vroncevic/atmanager#shell-tool-structure)
-- [Docs](https://github.com/vroncevic/atmanager#docs)
-- [Copyright and Licence](https://github.com/vroncevic/atmanager#copyright-and-licence)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Shell tool structure](#shell-tool-structure)
+- [Docs](#docs)
+- [Copyright and Licence](#copyright-and-licence)
 <!-- END doctoc -->
 
 ### INSTALLATION
@@ -55,15 +55,14 @@ atmanager start
 
 ### DEPENDENCIES
 
-This tool requires these other modules and libraries:
-
-* sh_util https://github.com/vroncevic/sh_util
+**atmanager** requires next modules and libraries:
+* sh_util [https://github.com/vroncevic/sh_util](https://github.com/vroncevic/sh_util)
 
 ### SHELL TOOL STRUCTURE
 
-***atmanager*** is based on MOP.
+**atmanager** is based on MOP.
 
-Shell tool structure:
+Code structure:
 ```
 .
 ├── bin/
@@ -80,14 +79,15 @@ Shell tool structure:
 [![Documentation Status](https://readthedocs.org/projects/atmanager/badge/?version=latest)](https://atmanager.readthedocs.io/projects/atmanager/en/latest/?badge=latest)
 
 More documentation and info at:
-
-* https://atmanager.readthedocs.io/en/latest/
+* [https://atmanager.readthedocs.io/en/latest/](https://atmanager.readthedocs.io/en/latest/)
+* [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
+* [http://tomcat.apache.org/tomcat-9.0-doc/introduction.html](http://tomcat.apache.org/tomcat-9.0-doc/introduction.html)
 
 ### COPYRIGHT AND LICENCE
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2018 by https://vroncevic.github.io/atmanager
+Copyright (C) 2017 by [vroncevic.github.io/atmanager](https://vroncevic.github.io/atmanager)
 
 This tool is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
