@@ -1,17 +1,17 @@
 # Apache Tomcat Manager.
 
-**atmanager** is shell tool for controlling/operating Apache Tomcat Server.
+**atmanager** is shell tool for controlling/operating **[Apache Tomcat Server](http://tomcat.apache.org/index.html)**.
 
-Developed in [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) code: **100%**.
+Developed in **[bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))** code: **100%**.
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
 
-[![GitHub issues open](https://img.shields.io/github/issues/vroncevic/atmanager.svg)](https://github.com/vroncevic/atmanager/issues)
- [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/atmanager.svg)](https://github.com/vroncevic/atmanager/graphs/contributors)
+[![GitHub issues open](https://img.shields.io/github/issues/vroncevic/atmanager.svg)](https://github.com/vroncevic/atmanager/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/atmanager.svg)](https://github.com/vroncevic/atmanager/graphs/contributors)
 
-<!-- START doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
 - [Installation](#installation)
@@ -19,14 +19,15 @@ other information that should be provided before the tool is installed.
 - [Dependencies](#dependencies)
 - [Shell tool structure](#shell-tool-structure)
 - [Docs](#docs)
-- [Copyright and Licence](#copyright-and-licence)
-<!-- END doctoc -->
+- [Copyright and licence](#copyright-and-licence)
 
-### INSTALLATION
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-Navigate to release [page](https://github.com/vroncevic/atmanager/releases) download and extract release archive.
+### Installation
 
-To install modules type the following:
+Navigate to release **[page](https://github.com/vroncevic/atmanager/releases)** download and extract release archive.
+
+To install **atmanager** type the following:
 
 ```
 tar xvzf atmanager-x.y.z.tar.gz
@@ -40,7 +41,7 @@ cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.1.0/
 
 Or You can use docker to create image/container.
 
-### USAGE
+### Usage
 
 ```
 # Create symlink for shell tool
@@ -53,12 +54,12 @@ export PATH=${PATH}:/root/bin/
 atmanager start
 ```
 
-### DEPENDENCIES
+### Dependencies
 
 **atmanager** requires next modules and libraries:
 * sh_util [https://github.com/vroncevic/sh_util](https://github.com/vroncevic/sh_util)
 
-### SHELL TOOL STRUCTURE
+### Shell tool structure
 
 **atmanager** is based on MOP.
 
@@ -74,7 +75,7 @@ Code structure:
     └── atmanager.log
 ```
 
-### DOCS
+### Docs
 
 [![Documentation Status](https://readthedocs.org/projects/atmanager/badge/?version=latest)](https://atmanager.readthedocs.io/projects/atmanager/en/latest/?badge=latest)
 
@@ -83,13 +84,13 @@ More documentation and info at:
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 * [http://tomcat.apache.org/tomcat-9.0-doc/introduction.html](http://tomcat.apache.org/tomcat-9.0-doc/introduction.html)
 
-### COPYRIGHT AND LICENCE
+### Copyright and licence
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Copyright (C) 2017 by [vroncevic.github.io/atmanager](https://vroncevic.github.io/atmanager)
 
-This tool is free software; you can redistribute it and/or modify
+**atmanager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
 at your option, any later version of Bash 4 you may have available.
 
