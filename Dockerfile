@@ -29,7 +29,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
 RUN mkdir /opt/tomcat
 RUN groupadd tomcat
 RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
-RUN wget http://www-us.apache.org/dist/tomcat/tomcat-9/v9.0.35/bin/apache-tomcat-9.0.35.tar.gz
+RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.38/bin/apache-tomcat-9.0.38.tar.gz
 RUN tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
 RUN chgrp -R tomcat /opt/tomcat/
 RUN chmod -R g+r /opt/tomcat/conf/
