@@ -1,4 +1,4 @@
-# Apache Tomcat Manager.
+# Apache Tomcat Manager
 
 **atmanager** is shell tool for controlling/operating **[Apache Tomcat Server](http://tomcat.apache.org/index.html)**.
 
@@ -98,3 +98,8 @@ Copyright (C) 2017 by [vroncevic.github.io/atmanager](https://vroncevic.github.i
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
 at your option, any later version of Bash 4 you may have available.
 
+Lets help and support FSF.
+
+[![Free Software Foundation](https://raw.githubusercontent.com/vroncevic/atmanager/dev/docs/fsf-logo_1.png)](https://my.fsf.org/)
+
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://my.fsf.org/donate/)
