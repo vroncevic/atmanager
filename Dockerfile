@@ -41,7 +41,7 @@ RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
 #RUN chown -R tomcat /opt/tomcat/logs/
 RUN wget https://github.com/vroncevic/sh_util/archive/v1.0.zip
 RUN unzip v1.0.zip
-RUN find /sh_util-1.0.0/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
+RUN find /sh_util-1.0/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
 RUN mkdir -p /root/scripts/sh_util/ver.1.0/
 RUN cp -R /sh_util-1.0.0/sh_tool/bin/   /root/scripts/sh_util/ver.1.0/
 RUN cp -R /sh_util-1.0.0/sh_tool/conf/  /root/scripts/sh_util/ver.1.0/
