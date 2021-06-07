@@ -43,9 +43,9 @@ RUN wget https://github.com/vroncevic/sh_util/archive/v1.0.zip
 RUN unzip v1.0.zip
 RUN find /sh_util-1.0/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
 RUN mkdir -p /root/scripts/sh_util/ver.1.0/
-RUN cp -R /sh_util-1.0.0/sh_tool/bin/   /root/scripts/sh_util/ver.1.0/
-RUN cp -R /sh_util-1.0.0/sh_tool/conf/  /root/scripts/sh_util/ver.1.0/
-RUN cp -R /sh_util-1.0.0/sh_tool/log/   /root/scripts/sh_util/ver.1.0/
+RUN cp -R /sh_util-1.0/sh_tool/bin/   /root/scripts/sh_util/ver.1.0/
+RUN cp -R /sh_util-1.0/sh_tool/conf/  /root/scripts/sh_util/ver.1.0/
+RUN cp -R /sh_util-1.0/sh_tool/log/   /root/scripts/sh_util/ver.1.0/
 RUN rm -Rf v1.0.zip sh_util-1.0
 RUN mkdir /sh_tool/
 COPY sh_tool /sh_tool/
