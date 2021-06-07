@@ -41,11 +41,11 @@ To install **atmanager** type the following:
 
 .. code-block:: bash
 
-   tar xvzf atmanager-x.y.z.tar.gz
-   cd atmanager-x.y.z
-   cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.1.0/
-   cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.1.0/
-   cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.1.0/
+   tar xvzf atmanager-x.y.tar.gz
+   cd atmanager-x.y
+   cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.x.y/
+   cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.x.y/
+   cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.x.y/
 
 Or You can use Docker to create image/container.
 
@@ -70,7 +70,7 @@ Code structure:
 
 .. code-block:: bash
 
-   .
+   sh_tool/
    ├── bin/
    │   └── atmanager.sh
    ├── conf/
@@ -90,7 +90,7 @@ Copyright and licence
 .. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
 
-Copyright (C) 2017 by `vroncevic.github.io/atmanager <https://vroncevic.github.io/atmanager>`_
+Copyright (C) 2016 by `vroncevic.github.io/atmanager <https://vroncevic.github.io/atmanager>`_
 
 **atmanager** is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,
