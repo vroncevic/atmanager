@@ -1,3 +1,5 @@
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/atmanager/dev/docs/atmanager_logo.png" width="25%">
+
 # Apache Tomcat Manager
 
 **atmanager** is shell tool for controlling/operating **[Apache Tomcat Server](http://tomcat.apache.org/index.html)**.
@@ -32,11 +34,11 @@ Navigate to release **[page](https://github.com/vroncevic/atmanager/releases)** 
 To install **atmanager** type the following:
 
 ```
-tar xvzf atmanager-x.y.z.tar.gz
-cd atmanager-x.y.z
-cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.1.0/
-cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.1.0/
-cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.1.0/
+tar xvzf atmanager-x.y.tar.gz
+cd atmanager-x.y
+cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.x.y/
+cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.x.y/
+cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.x.y/
 ```
 
 ![alt tag](https://raw.githubusercontent.com/vroncevic/atmanager/dev/docs/setup_tree.png)
@@ -49,7 +51,7 @@ Or You can use docker to create image/container.
 
 ```
 # Create symlink for shell tool
-ln -s /root/scripts/atmanager/ver.1.0/bin/atmanager.sh /root/bin/atmanager
+ln -s /root/scripts/atmanager/ver.x.y/bin/atmanager.sh /root/bin/atmanager
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -69,7 +71,7 @@ atmanager start
 
 Code structure:
 ```
-.
+sh_tool/
 ├── bin/
 │   └── atmanager.sh
 ├── conf/
@@ -92,7 +94,7 @@ More documentation and info at:
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2017 by [vroncevic.github.io/atmanager](https://vroncevic.github.io/atmanager)
+Copyright (C) 2016 by [vroncevic.github.io/atmanager](https://vroncevic.github.io/atmanager)
 
 **atmanager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,

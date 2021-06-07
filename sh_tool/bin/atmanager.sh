@@ -135,13 +135,7 @@ function __atmanager {
 #
 # @brief   Main entry point
 # @param   Value required operation to be done
-# @exitval Script tool atmanger exit with integer value
-#            0   - tool finished with success operation
-#            127 - run tool script as root user from cli
-#            128 - missing argument
-#            129 - failed to load tool script configuration from files
-#            130 - missing external tool tomcat
-#            131 - wrong argument (operation)
+# @exitval Script tool atmanger exit with integer value 0 -131
 #
 printf "\n%s\n%s\n\n" "${ATMANAGER_TOOL} ${ATMANAGER_VERSION}" "`date`"
 check_root
