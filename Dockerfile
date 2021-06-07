@@ -30,15 +30,15 @@ RUN DEBIAN_FRONTEND=noninteractive \
 RUN mkdir /opt/tomcat
 RUN groupadd tomcat
 RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
-RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.38/bin/apache-tomcat-9.0.38.tar.gz
-RUN tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
-RUN chgrp -R tomcat /opt/tomcat/
-RUN chmod -R g+r /opt/tomcat/conf/
-RUN chmod g+x /opt/tomcat/conf/
-RUN chown -R tomcat /opt/tomcat/webapps/
-RUN chown -R tomcat /opt/tomcat/work/
-RUN chown -R tomcat /opt/tomcat/temp/
-RUN chown -R tomcat /opt/tomcat/logs/
+#RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.38/bin/apache-tomcat-9.0.38.tar.gz
+#RUN tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
+#RUN chgrp -R tomcat /opt/tomcat/
+#RUN chmod -R g+r /opt/tomcat/conf/
+#RUN chmod g+x /opt/tomcat/conf/
+#RUN chown -R tomcat /opt/tomcat/webapps/
+#RUN chown -R tomcat /opt/tomcat/work/
+#RUN chown -R tomcat /opt/tomcat/temp/
+#RUN chown -R tomcat /opt/tomcat/logs/
 RUN wget https://github.com/vroncevic/sh_util/archive/v1.0.zip
 RUN unzip v1.0.zip
 RUN find /sh_util-1.0.0/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
