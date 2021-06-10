@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Apache Tomcat Server Manager
-# @version ver.1.0.0
+# @version ver.1.0
 # @date    Mon Jun 02 13:36:32 2015
 # @company Frobas IT Department, www.frobas.com 2015
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
@@ -135,7 +135,13 @@ function __atmanager {
 #
 # @brief   Main entry point
 # @param   Value required operation to be done
-# @exitval Script tool atmanger exit with integer value 0 -131
+# @exitval Script tool atmanger exit with integer value
+#            0   - tool finished with success operation
+#            127 - run tool script as root user from cli
+#            128 - missing argument
+#            129 - failed to load tool script configuration from files
+#            130 - missing external tool tomcat
+#            131 - wrong argument (operation)
 #
 printf "\n%s\n%s\n\n" "${ATMANAGER_TOOL} ${ATMANAGER_VERSION}" "`date`"
 check_root
