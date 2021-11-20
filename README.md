@@ -100,9 +100,9 @@ Sat Nov 20 20:16:06 UTC 2021
 	| (_| | |_| | | | | | (_| | | | | (_| | (_| |  __/ |   
 	 \__,_|\__|_| |_| |_|\__,_|_| |_|\__,_|\__, |\___|_|   
 	                                       |___/           
-			Info   github.io/atmanager ver.2.0 
-			Issue  github.io/issue
-			Author vroncevic.github.io
+		Info   github.io/atmanager ver.2.0 
+		Issue  github.io/issue
+		Author vroncevic.github.io
 
 [atmanager] Loading basic and util configuration!
 100% [================================================]
