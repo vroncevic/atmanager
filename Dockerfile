@@ -16,29 +16,29 @@
 FROM debian:10
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive \
- apt-get install -yq --no-install-recommends \
- tree \
- htop \
- wget \
- unzip \
- ca-certificates \
- openssl \
- tar \
- default-jdk \
- curl
+    apt-get install -yq --no-install-recommends \
+    tree \
+    htop \
+    wget \
+    unzip \
+    ca-certificates \
+    openssl \
+    tar \
+    default-jdk \
+    curl
 
 RUN mkdir /opt/tomcat
 RUN groupadd tomcat
 RUN useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
-#RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.38/bin/apache-tomcat-9.0.38.tar.gz
-#RUN tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
-#RUN chgrp -R tomcat /opt/tomcat/
-#RUN chmod -R g+r /opt/tomcat/conf/
-#RUN chmod g+x /opt/tomcat/conf/
-#RUN chown -R tomcat /opt/tomcat/webapps/
-#RUN chown -R tomcat /opt/tomcat/work/
-#RUN chown -R tomcat /opt/tomcat/temp/
-#RUN chown -R tomcat /opt/tomcat/logs/
+RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.55/bin/apache-tomcat-9.0.55.tar.gz
+RUN tar xzvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1
+RUN chgrp -R tomcat /opt/tomcat/
+RUN chmod -R g+r /opt/tomcat/conf/
+RUN chmod g+x /opt/tomcat/conf/
+RUN chown -R tomcat /opt/tomcat/webapps/
+RUN chown -R tomcat /opt/tomcat/work/
+RUN chown -R tomcat /opt/tomcat/temp/
+RUN chown -R tomcat /opt/tomcat/logs/
 RUN wget https://github.com/vroncevic/sh_util/archive/v1.0.zip
 RUN unzip v1.0.zip
 RUN find /sh_util-1.0/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
@@ -50,12 +50,12 @@ RUN rm -Rf v1.0.zip sh_util-1.0
 RUN mkdir /sh_tool/
 COPY sh_tool /sh_tool/
 RUN find /sh_tool/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
-RUN mkdir -p /root/scripts/atmanager/ver.1.0/
+RUN mkdir -p /root/scripts/atmanager/ver.2.0/
 RUN mkdir /root/bin/
-RUN cp -R /sh_tool/bin/   /root/scripts/atmanager/ver.1.0/
-RUN cp -R /sh_tool/conf/  /root/scripts/atmanager/ver.1.0/
-RUN cp -R /sh_tool/log/   /root/scripts/atmanager/ver.1.0/
+RUN cp -R /sh_tool/bin/   /root/scripts/atmanager/ver.2.0/
+RUN cp -R /sh_tool/conf/  /root/scripts/atmanager/ver.2.0/
+RUN cp -R /sh_tool/log/   /root/scripts/atmanager/ver.2.0/
 RUN rm -Rf /sh_tool/
-RUN chmod -R 755 /root/scripts/atmanager/ver.1.0/
-RUN ln -s /root/scripts/atmanager/ver.1.0/bin/atmanager.sh /root/bin/atmanager
-RUN tree /root/scripts/atmanager/ver.1.0/
+RUN chmod -R 755 /root/scripts/atmanager/ver.2.0/
+RUN ln -s /root/scripts/atmanager/ver.2.0/bin/atmanager.sh /root/bin/atmanager
+RUN tree /root/scripts/atmanager/ver.2.0/
