@@ -33,11 +33,16 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
+|Debian Linux OS|
+
+.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/atmanager/dev/docs/debtux.png
+   :target: https://www.debian.org
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/atmanager/releases
 
-To install **atmanager** type the following:
+To install **atmanager** type the following
 
 .. code-block:: bash
 
@@ -57,7 +62,7 @@ Or You can use Docker to create image/container.
 Dependencies
 -------------
 
-**atmanager** requires next modules and libraries:
+**atmanager** requires next modules and libraries
 
 * sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
 
@@ -66,16 +71,19 @@ Shell tool structure
 
 **atmanager** is based on MOP.
 
-Code structure:
+Shell tool structure
 
 .. code-block:: bash
 
    sh_tool/
    ├── bin/
-   │   └── atmanager.sh
+   │   ├── atmanager.sh
+   │   ├── center.sh
+   │   └── display_logo.sh
    ├── conf/
-   │   ├── atmanager.cfg
-   │   └── atmanager_util.cfg
+   │   ├── atmanager.cfg
+   │   ├── atmanager.logo
+   │   └── atmanager_util.cfg
    └── log/
        └── atmanager.log
 

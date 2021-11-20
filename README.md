@@ -29,9 +29,11 @@ other information that should be provided before the tool is installed.
 
 ### Installation
 
+![Debian Linux OS](https://raw.githubusercontent.com/vroncevic/atmanager/dev/docs/debtux.png)
+
 Navigate to release **[page](https://github.com/vroncevic/atmanager/releases)** download and extract release archive.
 
-To install **atmanager** type the following:
+To install **atmanager** type the following
 
 ```
 tar xvzf atmanager-x.y.tar.gz
@@ -41,7 +43,34 @@ cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.x.y/
 cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.x.y/
 ```
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/atmanager/dev/docs/setup_tree.png)
+Self generated setup script and execution
+```
+./atmanager_setup.sh 
+
+[setup] installing App/Tool/Script atmanager
+	Sat 20 Nov 2021 08:47:38 PM CET
+[setup] clean up App/Tool/Script structure
+[setup] copy App/Tool/Script structure
+[setup] remove github editor configuration files
+[setup] set App/Tool/Script permission
+[setup] create symbolic link of App/Tool/Script
+[setup] done
+
+/root/scripts/atmanager/ver.2.0/
+├── bin/
+│   ├── atmanager.sh
+│   ├── center.sh
+│   └── display_logo.sh
+├── conf/
+│   ├── atmanager.cfg
+│   ├── atmanager.logo
+│   └── atmanager_util.cfg
+└── log/
+    └── atmanager.log
+
+3 directories, 7 files
+lrwxrwxrwx 1 root root 48 Nov 20 20:47 /root/bin/atmanager -> /root/scripts/atmanager/ver.2.0/bin/atmanager.sh
+```
 
 Or You can use docker to create image/container.
 
@@ -56,26 +85,80 @@ ln -s /root/scripts/atmanager/ver.x.y/bin/atmanager.sh /root/bin/atmanager
 # Setting PATH
 export PATH=${PATH}:/root/bin/
 
-# Start Apache Tomcat
+# Start Apache Tomcat Server
 atmanager start
+                                                                                       
+atmanager ver.2.0
+Sat Nov 20 20:16:06 UTC 2021
+
+[check_root] Check permission for current session? [ok]
+[check_root] Done
+
+	       _                                               
+	  __ _| |_ _ __ ___   __ _ _ __   __ _  __ _  ___ _ __ 
+	 / _` | __| '_ ` _ \ / _` | '_ \ / _` |/ _` |/ _ \ '__|
+	| (_| | |_| | | | | | (_| | | | | (_| | (_| |  __/ |   
+	 \__,_|\__|_| |_| |_|\__,_|_| |_|\__,_|\__, |\___|_|   
+	                                       |___/           
+			Info   github.io/atmanager ver.2.0 
+			Issue  github.io/issue
+			Author vroncevic.github.io
+
+[atmanager] Loading basic and util configuration!
+100% [================================================]
+
+[load_conf] Loading App/Tool/Script configuration!
+[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.2.0/conf/atmanager.cfg] [ok]
+[check_cfg] Done
+
+[load_conf] Done
+
+[load_util_conf] Load module configuration!
+[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.2.0/conf/atmanager_util.cfg] [ok]
+[check_cfg] Done
+
+[load_util_conf] Done
+
+[check_tool] Checking tool [/opt/tomcat/bin/catalina.sh]? [ok]
+[check_tool] Done
+
+[check_op] Checking operation [start]? [ok]
+[check_op] Done
+
+[atmanager] Operation: start Apache Tomcat Server
+Using CATALINA_BASE:   /opt/tomcat
+Using CATALINA_HOME:   /opt/tomcat
+Using CATALINA_TMPDIR: /opt/tomcat/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /opt/tomcat/bin/bootstrap.jar:/opt/tomcat/bin/tomcat-juli.jar
+Using CATALINA_OPTS:   
+Tomcat started.
+[logging] Checking directory [/root/scripts/atmanager/ver.2.0/log/]? [ok]
+[logging] Write info log!
+[logging] Done
+
+[atmanager] Done
 ```
 
 ### Dependencies
 
-**atmanager** requires next modules and libraries:
+**atmanager** requires next modules and libraries
 * sh_util [https://github.com/vroncevic/sh_util](https://github.com/vroncevic/sh_util)
 
 ### Shell tool structure
 
 **atmanager** is based on MOP.
 
-Code structure:
+Shell tool structure
 ```
 sh_tool/
 ├── bin/
-│   └── atmanager.sh
+│   ├── atmanager.sh
+│   ├── center.sh
+│   └── display_logo.sh
 ├── conf/
 │   ├── atmanager.cfg
+│   ├── atmanager.logo
 │   └── atmanager_util.cfg
 └── log/
     └── atmanager.log
@@ -85,7 +168,7 @@ sh_tool/
 
 [![Documentation Status](https://readthedocs.org/projects/atmanager/badge/?version=latest)](https://atmanager.readthedocs.io/projects/atmanager/en/latest/?badge=latest)
 
-More documentation and info at:
+More documentation and info at
 * [https://atmanager.readthedocs.io/en/latest/](https://atmanager.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 * [http://tomcat.apache.org/tomcat-9.0-doc/introduction.html](http://tomcat.apache.org/tomcat-9.0-doc/introduction.html)

@@ -1,10 +1,10 @@
 #!/bin/bash
 #
 # @brief   Apache Tomcat Server Manager
-# @version ver.1.0
-# @date    Mon Jun 02 13:36:32 2015
-# @company Frobas IT Department, www.frobas.com 2015
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @version ver.2.0
+# @date    Sat Nov 20 11:40:40 CET 2021
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 UTIL_ROOT=/root/scripts
 UTIL_VERSION=ver.1.0
@@ -22,11 +22,18 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/progress_bar.sh
 
 ATMANAGER_TOOL=atmanager
-ATMANAGER_VERSION=ver.1.0
+ATMANAGER_VERSION=ver.2.0
 ATMANAGER_HOME=${UTIL_ROOT}/${ATMANAGER_TOOL}/${ATMANAGER_VERSION}
 ATMANAGER_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}.cfg
 ATMANAGER_UTIL_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}_util.cfg
+ATMANAGER_LOGO=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}.logo
 ATMANAGER_LOG=${ATMANAGER_HOME}/log
+
+tabs 4
+CONSOLE_WIDTH=$(stty size | awk '{print $2}')
+
+.    ${ATMANAGER_HOME}/bin/center.sh
+.    ${ATMANAGER_HOME}/bin/display_logo.sh
 
 declare -A ATMANAGER_USAGE=(
     [USAGE_TOOL]="__${ATMANAGER_TOOL}"
@@ -70,6 +77,7 @@ TOOL_NOTIFY="false"
 #
 function __atmanager {
     local OP=$1
+    display_logo
     if [ -n "${OP}" ]; then
         local FUNC=${FUNCNAME[0]} MSG="None"
         local STATUS_CONF STATUS_CONF_UTIL STATUS
@@ -151,4 +159,3 @@ if [ $STATUS -eq $SUCCESS ]; then
 fi
 
 exit 127
-
