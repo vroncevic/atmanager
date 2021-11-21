@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Apache Tomcat Server Manager
-# @version ver.2.0
+# @version ver.3.0
 # @date    Sat Nov 20 11:40:40 CET 2021
 # @company None, free software to use 2021
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
@@ -18,12 +18,14 @@
 # display_logo
 #
 function display_logo {
-    local info_url='https://vroncevic.github.io/atmanager'
-    local info_txt='github.io/atmanager'
-    local issue_url='https://github.com/vroncevic/atmanager/issues/new/choose'
+    local org='vroncevic'
+    local repo='atmanager'
+    local info_url="https://${org}.github.io/${repo}"
+    local info_txt="'github.io/${repo}'"
+    local issue_url="https://github.com/${org}/${repo}/issues/new/choose"
     local issue_txt='github.io/issue'
-    local author_url='https://vroncevic.github.io/bio/'
-    local author_txt='vroncevic.github.io'
+    local author_url="https://${org}.github.io/bio/"
+    local author_txt="${org}.github.io"
     while IFS= read -r line
     do
         center 0

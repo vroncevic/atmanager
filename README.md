@@ -56,7 +56,7 @@ Self generated setup script and execution
 [setup] create symbolic link of App/Tool/Script
 [setup] done
 
-/root/scripts/atmanager/ver.2.0/
+/root/scripts/atmanager/ver.3.0/
 ├── bin/
 │   ├── atmanager.sh
 │   ├── center.sh
@@ -88,8 +88,8 @@ export PATH=${PATH}:/root/bin/
 # Start Apache Tomcat Server
 atmanager start
                                                                                        
-atmanager ver.2.0
-Sat Nov 20 20:16:06 UTC 2021
+atmanager ver.3.0
+Sun 21 Nov 2021 09:57:12 AM CET
 
 [check_root] Check permission for current session? [ok]
 [check_root] Done
@@ -100,7 +100,7 @@ Sat Nov 20 20:16:06 UTC 2021
 	| (_| | |_| | | | | | (_| | | | | (_| | (_| |  __/ |   
 	 \__,_|\__|_| |_| |_|\__,_|_| |_|\__,_|\__, |\___|_|   
 	                                       |___/           
-		Info   github.io/atmanager ver.2.0 
+		Info   github.io/atmanager ver.3.0 
 		Issue  github.io/issue
 		Author vroncevic.github.io
 
@@ -108,13 +108,13 @@ Sat Nov 20 20:16:06 UTC 2021
 100% [================================================]
 
 [load_conf] Loading App/Tool/Script configuration!
-[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.2.0/conf/atmanager.cfg] [ok]
+[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.3.0/conf/atmanager.cfg] [ok]
 [check_cfg] Done
 
 [load_conf] Done
 
 [load_util_conf] Load module configuration!
-[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.2.0/conf/atmanager_util.cfg] [ok]
+[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.3.0/conf/atmanager_util.cfg] [ok]
 [check_cfg] Done
 
 [load_util_conf] Done
@@ -133,7 +133,7 @@ Using JRE_HOME:        /usr
 Using CLASSPATH:       /opt/tomcat/bin/bootstrap.jar:/opt/tomcat/bin/tomcat-juli.jar
 Using CATALINA_OPTS:   
 Tomcat started.
-[logging] Checking directory [/root/scripts/atmanager/ver.2.0/log/]? [ok]
+[logging] Checking directory [/root/scripts/atmanager/ver.3.0/log/]? [ok]
 [logging] Write info log!
 [logging] Done
 
