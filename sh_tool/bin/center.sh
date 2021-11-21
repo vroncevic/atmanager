@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Apache Tomcat Server Manager
-# @version ver.3.0
+# @version ver.4.0
 # @date    Sat Nov 20 11:40:40 CET 2021
 # @company None, free software to use 2021
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
@@ -18,14 +18,14 @@
 # center 0
 #
 function center {
-    local additional_shifter=$1
-    local start_position=$((${CONSOLE_WIDTH} / 2 - 21))
-    local number_of_tabs=$((
-        ${start_position} / 4 - 1 + ${additional_shifter}
+    local ADDITIONAL_SHIFTER=$1
+    local START_POSITION=$((${CONSOLE_WIDTH} / 2 - 21))
+    local NUMBER_OF_TABS=$((
+        ${START_POSITION} / 4 - 1 + ${ADDITIONAL_SHIFTER}
     ))
-    local tab="$(printf '\011')"
-    for ((i = 0; i <= ${number_of_tabs}; i++))
+    local TAB="$(printf '\011')"
+    for ((I = 0; I <= ${NUMBER_OF_TABS}; I++))
     do
-        printf "${tab}"
+        printf "${TAB}"
     done
 }
