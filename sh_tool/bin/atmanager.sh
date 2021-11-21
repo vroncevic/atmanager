@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Apache Tomcat Server Manager
-# @version ver.3.0
+# @version ver.4.0
 # @date    Sat Nov 20 11:40:40 CET 2021
 # @company None, free software to use 2021
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
@@ -22,7 +22,7 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/progress_bar.sh
 
 ATMANAGER_TOOL=atmanager
-ATMANAGER_VERSION=ver.3.0
+ATMANAGER_VERSION=ver.4.0
 ATMANAGER_HOME=${UTIL_ROOT}/${ATMANAGER_TOOL}/${ATMANAGER_VERSION}
 ATMANAGER_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}.cfg
 ATMANAGER_UTIL_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}_util.cfg
