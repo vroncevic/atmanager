@@ -87,19 +87,21 @@ export PATH=${PATH}:/root/bin/
 
 # Start Apache Tomcat Server
 atmanager start
-                                                                                       
+
 atmanager ver.4.0
 Sun 21 Nov 2021 12:13:08 PM CET
 
 [check_root] Check permission for current session? [ok]
 [check_root] Done
 
+	                                                       
 	       _                                               
 	  __ _| |_ _ __ ___   __ _ _ __   __ _  __ _  ___ _ __ 
 	 / _` | __| '_ ` _ \ / _` | '_ \ / _` |/ _` |/ _ \ '__|
 	| (_| | |_| | | | | | (_| | | | | (_| | (_| |  __/ |   
 	 \__,_|\__|_| |_| |_|\__,_|_| |_|\__,_|\__, |\___|_|   
 	                                       |___/           
+	                                                       
 		Info   github.io/atmanager ver.4.0 
 		Issue  github.io/issue
 		Author vroncevic.github.io
