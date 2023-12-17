@@ -6,7 +6,7 @@
 
 Developed in **[bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))** code: **100%**.
 
-[![atmanager shell checker](https://github.com/vroncevic/atmanager/workflows/atmanager%20shell%20checker/badge.svg)](https://github.com/vroncevic/atmanager/actions?query=workflow%3A%22atmanager+shell+checker%22)
+[![atmanager_shell_checker](https://github.com/vroncevic/atmanager/actions/workflows/atmanager_shell_checker.yml/badge.svg)](https://github.com/vroncevic/atmanager/actions/workflows/atmanager_shell_checker.yml)
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -74,8 +74,6 @@ lrwxrwxrwx 1 root root 48 Nov 21 12:13 /root/bin/atmanager -> /root/scripts/atma
 
 Or You can use docker to create image/container.
 
-[![atmanager docker checker](https://github.com/vroncevic/atmanager/workflows/atmanager%20docker%20checker/badge.svg)](https://github.com/vroncevic/atmanager/actions?query=workflow%3A%22atmanager+docker+checker%22)
-
 ### Usage
 
 ```
@@ -94,13 +92,16 @@ Sun 21 Nov 2021 12:13:08 PM CET
 [check_root] Check permission for current session? [ok]
 [check_root] Done
 
-	                                                       
-	       _                                               
-	  __ _| |_ _ __ ___   __ _ _ __   __ _  __ _  ___ _ __ 
-	 / _` | __| '_ ` _ \ / _` | '_ \ / _` |/ _` |/ _ \ '__|
-	| (_| | |_| | | | | | (_| | | | | (_| | (_| |  __/ |   
-	 \__,_|\__|_| |_| |_|\__,_|_| |_|\__,_|\__, |\___|_|   
-	                                       |___/           
+                                                                                     
+               ██                                                                    
+              ░██                                                                    
+    ██████   ██████ ██████████   ██████   ███████   ██████    █████   █████  ██████  
+   ░░░░░░██ ░░░██░ ░░██░░██░░██ ░░░░░░██ ░░██░░░██ ░░░░░░██  ██░░░██ ██░░░██░░██░░█  
+    ███████   ░██   ░██ ░██ ░██  ███████  ░██  ░██  ███████ ░██  ░██░███████ ░██ ░   
+   ██░░░░██   ░██   ░██ ░██ ░██ ██░░░░██  ░██  ░██ ██░░░░██ ░░██████░██░░░░  ░██     
+  ░░████████  ░░██  ███ ░██ ░██░░████████ ███  ░██░░████████ ░░░░░██░░██████░███     
+   ░░░░░░░░    ░░  ░░░  ░░  ░░  ░░░░░░░░ ░░░   ░░  ░░░░░░░░   █████  ░░░░░░ ░░░      
+                                                             ░░░░░                   
 	                                                       
 		Info   github.io/atmanager ver.4.0 
 		Issue  github.io/issue
@@ -179,7 +180,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016 by [vroncevic.github.io/atmanager](https://vroncevic.github.io/atmanager)
+Copyright (C) 2016 - 2024 by [vroncevic.github.io/atmanager](https://vroncevic.github.io/atmanager)
 
 **atmanager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
