@@ -60,7 +60,7 @@ TOOL_LOG="false"
 TOOL_NOTIFY="false"
 
 #
-# @brief   Main function
+# @brief   Apache Tomcat Server Manager
 # @param   Value required operation to be done
 # @exitval Function __atmanger exit with integer value
 #            0   - tool finished with success operation
