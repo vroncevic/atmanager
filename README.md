@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.githubusercontent.com/vroncevic/atmanager/dev/docs/atmanager_logo.png" width="25%">
-
 # Apache Tomcat Manager
+
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/atmanager/dev/docs/atmanager_logo.png" width="25%">
 
 **atmanager** is shell tool for controlling/operating **[Apache Tomcat Server](http://tomcat.apache.org/index.html)**.
 
@@ -35,7 +35,7 @@ Navigate to release **[page](https://github.com/vroncevic/atmanager/releases)** 
 
 To install **atmanager** type the following
 
-```
+```bash
 tar xvzf atmanager-x.y.tar.gz
 cd atmanager-x.y
 cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.x.y/
@@ -44,7 +44,8 @@ cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.x.y/
 ```
 
 Self generated setup script and execution
-```
+
+```bash
 ./atmanager_setup.sh 
 
 [setup] installing App/Tool/Script atmanager
@@ -76,7 +77,7 @@ Or You can use docker to create image/container.
 
 ### Usage
 
-```
+```bash
 # Create symlink for shell tool
 ln -s /root/scripts/atmanager/ver.x.y/bin/atmanager.sh /root/bin/atmanager
 
@@ -153,7 +154,8 @@ Tomcat started.
 **atmanager** is based on MOP.
 
 Shell tool structure
-```
+
+```bash
 sh_tool/
 ├── bin/
 │   ├── atmanager.sh
