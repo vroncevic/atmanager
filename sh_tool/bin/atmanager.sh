@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Apache Tomcat Server Manager
-# @version ver.4.0
+# @version ver.5.0
 # @date    Sat Nov 20 11:40:40 CET 2021
 # @company None, free software to use 2021
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
@@ -20,20 +20,15 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/load_conf.sh
 .    ${UTIL}/bin/load_util_conf.sh
 .    ${UTIL}/bin/progress_bar.sh
+.    ${UTIL}/bin/display_logo.sh
 
 ATMANAGER_TOOL=atmanager
-ATMANAGER_VERSION=ver.4.0
+ATMANAGER_VERSION=ver.5.0
 ATMANAGER_HOME=${UTIL_ROOT}/${ATMANAGER_TOOL}/${ATMANAGER_VERSION}
 ATMANAGER_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}.cfg
 ATMANAGER_UTIL_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}_util.cfg
 ATMANAGER_LOGO=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}.logo
 ATMANAGER_LOG=${ATMANAGER_HOME}/log
-
-tabs 4
-CONSOLE_WIDTH=$(stty size | awk '{print $2}')
-
-.    ${ATMANAGER_HOME}/bin/center.sh
-.    ${ATMANAGER_HOME}/bin/display_logo.sh
 
 declare -A ATMANAGER_USAGE=(
     [USAGE_TOOL]="__${ATMANAGER_TOOL}"
@@ -77,8 +72,8 @@ TOOL_NOTIFY="false"
 #
 function __atmanager {
     local OP=$1
-    display_logo
     if [ -n "${OP}" ]; then
+        display_logo "vroncevic" "${ATMANAGER_TOOL}" "${ATMANAGER_VERSION}" "${ATMANAGER_LOGO}"
         local FUNC=${FUNCNAME[0]} MSG="None"
         local STATUS_CONF STATUS_CONF_UTIL STATUS
         MSG="Loading basic and util configuration!"

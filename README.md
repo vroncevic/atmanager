@@ -36,11 +36,11 @@ Navigate to release **[page](https://github.com/vroncevic/atmanager/releases)** 
 To install **atmanager** type the following
 
 ```bash
-tar xvzf atmanager-x.y.tar.gz
-cd atmanager-x.y
-cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.x.y/
-cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.x.y/
-cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.x.y/
+tar xvzf atmanager-5.0.tar.gz
+cd atmanager-5.0
+cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.5.0/
+cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.5.0/
+cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.5.0/
 ```
 
 Self generated setup script and execution
@@ -49,7 +49,7 @@ Self generated setup script and execution
 ./atmanager_setup.sh 
 
 [setup] installing App/Tool/Script atmanager
-	Sun 21 Nov 2021 12:13:08 PM CET
+	Tue Dec  2 07:09:46 PM CET 2025
 [setup] clean up App/Tool/Script structure
 [setup] copy App/Tool/Script structure
 [setup] remove github editor configuration files
@@ -57,11 +57,9 @@ Self generated setup script and execution
 [setup] create symbolic link of App/Tool/Script
 [setup] done
 
-/root/scripts/atmanager/ver.4.0/
+/root/scripts/atmanager/ver.5.0/
 ├── bin/
-│   ├── atmanager.sh
-│   ├── center.sh
-│   └── display_logo.sh
+│   └── atmanager.sh
 ├── conf/
 │   ├── atmanager.cfg
 │   ├── atmanager.logo
@@ -69,8 +67,8 @@ Self generated setup script and execution
 └── log/
     └── atmanager.log
 
-3 directories, 7 files
-lrwxrwxrwx 1 root root 48 Nov 21 12:13 /root/bin/atmanager -> /root/scripts/atmanager/ver.4.0/bin/atmanager.sh
+4 directories, 5 files
+lrwxrwxrwx 1 root root 48 Dec  2 19:09 /root/bin/atmanager -> /root/scripts/atmanager/ver.5.0/bin/atmanager.sh
 ```
 
 Or You can use docker to create image/container.
@@ -79,7 +77,7 @@ Or You can use docker to create image/container.
 
 ```bash
 # Create symlink for shell tool
-ln -s /root/scripts/atmanager/ver.x.y/bin/atmanager.sh /root/bin/atmanager
+ln -s /root/scripts/atmanager/ver.5.0/bin/atmanager.sh /root/bin/atmanager
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -87,8 +85,8 @@ export PATH=${PATH}:/root/bin/
 # Start Apache Tomcat Server
 atmanager start
 
-atmanager ver.4.0
-Sun 21 Nov 2021 12:13:08 PM CET
+atmanager ver.5.0
+Tue Dec  2 07:09:46 PM CET 2025
 
 [check_root] Check permission for current session? [ok]
 [check_root] Done
@@ -104,7 +102,7 @@ Sun 21 Nov 2021 12:13:08 PM CET
    ░░░░░░░░    ░░  ░░░  ░░  ░░  ░░░░░░░░ ░░░   ░░  ░░░░░░░░   █████  ░░░░░░ ░░░      
                                                              ░░░░░                   
 	                                                       
-		Info   github.io/atmanager ver.4.0 
+		Info   github.io/atmanager ver.5.0 
 		Issue  github.io/issue
 		Author vroncevic.github.io
 
@@ -112,13 +110,13 @@ Sun 21 Nov 2021 12:13:08 PM CET
 100% [================================================]
 
 [load_conf] Loading App/Tool/Script configuration!
-[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.4.0/conf/atmanager.cfg] [ok]
+[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.5.0/conf/atmanager.cfg] [ok]
 [check_cfg] Done
 
 [load_conf] Done
 
 [load_util_conf] Load module configuration!
-[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.4.0/conf/atmanager_util.cfg] [ok]
+[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.5.0/conf/atmanager_util.cfg] [ok]
 [check_cfg] Done
 
 [load_util_conf] Done
@@ -137,7 +135,7 @@ Using JRE_HOME:        /usr
 Using CLASSPATH:       /opt/tomcat/bin/bootstrap.jar:/opt/tomcat/bin/tomcat-juli.jar
 Using CATALINA_OPTS:   
 Tomcat started.
-[logging] Checking directory [/root/scripts/atmanager/ver.4.0/log/]? [ok]
+[logging] Checking directory [/root/scripts/atmanager/ver.5.0/log/]? [ok]
 [logging] Write info log!
 [logging] Done
 
@@ -158,9 +156,7 @@ Shell tool structure
 ```bash
 sh_tool/
 ├── bin/
-│   ├── atmanager.sh
-│   ├── center.sh
-│   └── display_logo.sh
+│   └── atmanager.sh
 ├── conf/
 │   ├── atmanager.cfg
 │   ├── atmanager.logo
@@ -182,7 +178,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016 - 2024 by [vroncevic.github.io/atmanager](https://vroncevic.github.io/atmanager)
+Copyright (C) 2016 - 2026 by [vroncevic.github.io/atmanager](https://vroncevic.github.io/atmanager)
 
 **atmanager** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
