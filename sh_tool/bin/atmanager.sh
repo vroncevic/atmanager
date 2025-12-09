@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Apache Tomcat Server Manager
-# @version ver.5.0
+# @version ver.6.0
 # @date    Sat Nov 20 11:40:40 CET 2021
 # @company None, free software to use 2021
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
@@ -11,8 +11,6 @@ UTIL_VERSION=ver.1.0
 UTIL=${UTIL_ROOT}/sh_util/${UTIL_VERSION}
 UTIL_LOG=${UTIL}/log
 
-.    ${UTIL}/bin/devel.sh
-.    ${UTIL}/bin/usage.sh
 .    ${UTIL}/bin/check_root.sh
 .    ${UTIL}/bin/check_tool.sh
 .    ${UTIL}/bin/check_op.sh
@@ -23,7 +21,7 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/display_logo.sh
 
 ATMANAGER_TOOL=atmanager
-ATMANAGER_VERSION=ver.5.0
+ATMANAGER_VERSION=ver.6.0
 ATMANAGER_HOME=${UTIL_ROOT}/${ATMANAGER_TOOL}/${ATMANAGER_VERSION}
 ATMANAGER_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}.cfg
 ATMANAGER_UTIL_CFG=${ATMANAGER_HOME}/conf/${ATMANAGER_TOOL}_util.cfg
@@ -50,6 +48,13 @@ declare -A PB_STRUCTURE=(
     [SLEEP]=0.01
 )
 
+declare -A ATMANAGER_LOGO_DATA=(
+    [OWNER]="vroncevic"
+    [REPO]="${ATMANAGER_TOOL}"
+    [VERSION]="${ATMANAGER_VERSION}"
+    [LOGO]="${ATMANAGER_LOGO}"
+)
+
 TOOL_DBG="false"
 TOOL_LOG="false"
 TOOL_NOTIFY="false"
@@ -73,7 +78,7 @@ TOOL_NOTIFY="false"
 function __atmanager {
     local OP=$1
     if [ -n "${OP}" ]; then
-        display_logo "vroncevic" "${ATMANAGER_TOOL}" "${ATMANAGER_VERSION}" "${ATMANAGER_LOGO}"
+        display_logo ATMANAGER_LOGO_DATA
         local FUNC=${FUNCNAME[0]} MSG="None"
         local STATUS_CONF STATUS_CONF_UTIL STATUS
         MSG="Loading basic and util configuration!"
