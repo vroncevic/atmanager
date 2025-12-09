@@ -46,11 +46,11 @@ To install **atmanager** type the following
 
 .. code-block:: bash
 
-   tar xvzf atmanager-5.0.tar.gz
-   cd atmanager-5.0
-   cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.5.0/
-   cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.5.0/
-   cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.5.0/
+   tar xvzf atmanager-6.0.tar.gz
+   cd atmanager-6.0
+   cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.6.0/
+   cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.6.0/
+   cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.6.0/
 
 Or You can use Docker to create image/container.
 

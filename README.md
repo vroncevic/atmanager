@@ -36,11 +36,11 @@ Navigate to release **[page](https://github.com/vroncevic/atmanager/releases)** 
 To install **atmanager** type the following
 
 ```bash
-tar xvzf atmanager-5.0.tar.gz
-cd atmanager-5.0
-cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.5.0/
-cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.5.0/
-cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.5.0/
+tar xvzf atmanager-6.0.tar.gz
+cd atmanager-6.0
+cp -R ~/sh_tool/bin/   /root/scripts/atmanager/ver.6.0/
+cp -R ~/sh_tool/conf/  /root/scripts/atmanager/ver.6.0/
+cp -R ~/sh_tool/log/   /root/scripts/atmanager/ver.6.0/
 ```
 
 Self generated setup script and execution
@@ -57,7 +57,7 @@ Self generated setup script and execution
 [setup] create symbolic link of App/Tool/Script
 [setup] done
 
-/root/scripts/atmanager/ver.5.0/
+/root/scripts/atmanager/ver.6.0/
 ├── bin/
 │   └── atmanager.sh
 ├── conf/
@@ -68,7 +68,7 @@ Self generated setup script and execution
     └── atmanager.log
 
 4 directories, 5 files
-lrwxrwxrwx 1 root root 48 Dec  2 19:09 /root/bin/atmanager -> /root/scripts/atmanager/ver.5.0/bin/atmanager.sh
+lrwxrwxrwx 1 root root 48 Dec  2 19:09 /root/bin/atmanager -> /root/scripts/atmanager/ver.6.0/bin/atmanager.sh
 ```
 
 Or You can use docker to create image/container.
@@ -77,7 +77,7 @@ Or You can use docker to create image/container.
 
 ```bash
 # Create symlink for shell tool
-ln -s /root/scripts/atmanager/ver.5.0/bin/atmanager.sh /root/bin/atmanager
+ln -s /root/scripts/atmanager/ver.6.0/bin/atmanager.sh /root/bin/atmanager
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -85,7 +85,7 @@ export PATH=${PATH}:/root/bin/
 # Start Apache Tomcat Server
 atmanager start
 
-atmanager ver.5.0
+atmanager ver.6.0
 Tue Dec  2 07:09:46 PM CET 2025
 
 [check_root] Check permission for current session? [ok]
@@ -102,7 +102,7 @@ Tue Dec  2 07:09:46 PM CET 2025
    ░░░░░░░░    ░░  ░░░  ░░  ░░  ░░░░░░░░ ░░░   ░░  ░░░░░░░░   █████  ░░░░░░ ░░░      
                                                              ░░░░░                   
 	                                                       
-		Info   github.io/atmanager ver.5.0 
+		Info   github.io/atmanager ver.6.0 
 		Issue  github.io/issue
 		Author vroncevic.github.io
 
@@ -110,13 +110,13 @@ Tue Dec  2 07:09:46 PM CET 2025
 100% [================================================]
 
 [load_conf] Loading App/Tool/Script configuration!
-[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.5.0/conf/atmanager.cfg] [ok]
+[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.6.0/conf/atmanager.cfg] [ok]
 [check_cfg] Done
 
 [load_conf] Done
 
 [load_util_conf] Load module configuration!
-[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.5.0/conf/atmanager_util.cfg] [ok]
+[check_cfg] Checking configuration file [/root/scripts/atmanager/ver.6.0/conf/atmanager_util.cfg] [ok]
 [check_cfg] Done
 
 [load_util_conf] Done
@@ -135,7 +135,7 @@ Using JRE_HOME:        /usr
 Using CLASSPATH:       /opt/tomcat/bin/bootstrap.jar:/opt/tomcat/bin/tomcat-juli.jar
 Using CATALINA_OPTS:   
 Tomcat started.
-[logging] Checking directory [/root/scripts/atmanager/ver.5.0/log/]? [ok]
+[logging] Checking directory [/root/scripts/atmanager/ver.6.0/log/]? [ok]
 [logging] Write info log!
 [logging] Done
 
